@@ -166,6 +166,8 @@ td.keep { font-weight: 700; }
 .logrow .x { background: none; border: 0; color: var(--muted); cursor: pointer; font: 600 .8rem var(--body); }
 @media (max-width: 620px) { .logrow { grid-template-columns: 1fr 1fr 1fr; } .logrow .n { grid-column: 1 / -1; } }
 tr.even-row td { background: var(--good-soft); }
+.phase.now { border: 2px solid var(--caramel); }
+.phase.now h3::after { content: "  · This week"; font-family: var(--body); font-size: .8rem; font-weight: 700; color: var(--caramel); }
 footer { padding-block: 40px 64px; color: var(--muted); font-size: .85rem; }
 footer .wrap { display: grid; gap: 6px; }
 .sync { font-size: .78rem; }
@@ -204,6 +206,7 @@ footer .wrap { display: grid; gap: 6px; }
     <a href="#money">Money</a>
     <a href="#sell">Takealot</a>
     <a href="#plan">Launch plan</a>
+    <a href="#weeks">Week by week</a>
     <a href="#content">Content</a>
     <a href="#checkin">Weekly check-in</a>
     <a href="#setup">Business setup</a>
@@ -476,9 +479,18 @@ footer .wrap { display: grid; gap: 6px; }
   </div>
 </section>
 
+<section class="block" id="weeks">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">09 · Week by week</span><h2>12 weeks from kitchen to Takealot</h2>
+      <p class="lede">The launch plan broken into weeks, starting Monday 5 October 2026. Do this week's list and nothing else. If a week runs over, just push the rest back.</p></div>
+    <div class="overall"><b id="wkPct">0%</b><div class="bar"><i id="wkBar"></i></div><span class="note" id="wkNow"></span></div>
+    <div class="phases" id="weeksList"></div>
+  </div>
+</section>
+
 <section class="block" id="content">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">09 · Content</span><h2>Make them think "I need to film this"</h2>
+    <div class="head"><span class="eyebrow">10 · Content</span><h2>Make them think "I need to film this"</h2>
       <p class="lede">Build content around how it looks, sounds and feels, not "product on white, buy now." Tick shots as you film them.</p></div>
     <div class="shots" id="shots"></div>
     <div class="grid2">
@@ -490,7 +502,7 @@ footer .wrap { display: grid; gap: 6px; }
 
 <section class="block" id="checkin">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">10 · Weekly check-in</span><h2>Ten minutes every Sunday</h2>
+    <div class="head"><span class="eyebrow">11 · Weekly check-in</span><h2>Ten minutes every Sunday</h2>
       <p class="lede">What gets measured gets better. Write down the same few numbers every week and you'll see what's working.</p></div>
     <div class="panel">
       <span class="eyebrow">Add this week</span>
@@ -514,7 +526,7 @@ footer .wrap { display: grid; gap: 6px; }
 
 <section class="block" id="setup">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">11 · Business setup</span><h2>Make it official, step by step</h2>
+    <div class="head"><span class="eyebrow">12 · Business setup</span><h2>Make it official, step by step</h2>
       <p class="lede">You don't need to do all of this on day one. Start simple and add as sales grow.</p></div>
     <div class="phases" id="setupList"></div>
     <div class="grid2">
@@ -526,7 +538,7 @@ footer .wrap { display: grid; gap: 6px; }
 
 <section class="block" id="risks">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">12 · Risks and plan B</span><h2>What could go wrong, and what you'd do</h2></div>
+    <div class="head"><span class="eyebrow">13 · Risks and plan B</span><h2>What could go wrong, and what you'd do</h2></div>
     <div class="panel"><div class="tbl-scroll"><table>
       <thead><tr><th>If this happens</th><th>Plan B</th></tr></thead>
       <tbody>
@@ -545,7 +557,7 @@ footer .wrap { display: grid; gap: 6px; }
 
 <section class="block" id="safe">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">13 · Before you sell</span><h2>Safe and legal first</h2>
+    <div class="head"><span class="eyebrow">14 · Before you sell</span><h2>Safe and legal first</h2>
       <p class="lede">The kitchen version is product development, not the final recipe. These need to be done before a customer gets a can.</p></div>
     <div class="phases" id="safeList"></div>
     <p class="note">This is a starting checklist, not legal advice. South Africa's CTFA (Cosmetic, Toiletry &amp; Fragrance Association) has guidance on cosmetic labels and safety.</p>
@@ -607,6 +619,24 @@ const SETUP = [
     "Find one mentor: someone who has sold on Takealot or runs a beauty brand",
     "Join a South African small-business or Takealot sellers group to ask questions" ] }
 ];
+const WEEKS = [
+  ["2026-10-05", "Start testing", ["Buy a 10ml skin-safe vanilla fragrance and 1L odourless coconut oil (and a 0.1g scale if you need one)", "Make test batch 1 (100g) with sugar and sunflower oil from home", "Write down every gram", "Apply for a Takealot seller account", "Open a separate bank account for Amora"]],
+  ["2026-10-12", "Fix the recipe", ["Make test batches 2 and 3, changing one thing each time", "Ask the fragrance seller for the safety sheet and skin limit", "Give 5 people a test jar", "Post the texture on Stories with a scent poll", "Start the waitlist (WhatsApp list or 'reply ME')"]],
+  ["2026-10-19", "Listen and get quotes", ["Collect your testers' answers word for word", "Ask 2 or 3 suppliers for prices on the clear cans and lids", "Order 2 or 3 sample cans", "Search CIPC to check nobody owns 'Amora' for cosmetics", "Set your 'go' number in the Prove it section"]],
+  ["2026-10-26", "Final recipe and design", ["Decide the final recipe and write it down", "Start the 4-week stability test: one jar somewhere warm, one somewhere cool", "Design the Crème Brûlée label, seal sticker and #AmoraGlow card", "Use the polish yourself every few days and note anything that changes"]],
+  ["2026-11-02", "Buy for real", ["Check your 'go' number: did enough people say yes?", "Buy barcodes (Crème Brûlée + 1 for the gift set)", "Buy the first stock (Step 2 of the shopping list, about R939)", "Print a test label and stick it on a sample can", "Choose the reusable lid: gold or cream"]],
+  ["2026-11-09", "Photos and listing", ["Order the first 30 cans and lids", "Take the white-background main photo", "Take 4 to 6 more photos: texture, on skin, lid, in a hand", "Write the Takealot listing: name, 250g, ingredients, what's special", "Write the full ingredient list for the label"]],
+  ["2026-11-16", "Get ready to sell", ["Print the labels with ingredients, weight, batch number and your details", "Make a batch record sheet", "Open pre-orders for the first 30 on Instagram and WhatsApp", "Get a product liability insurance quote"]],
+  ["2026-11-23", "Make the first 30", ["Check the stability-test jars: smell, colour and texture still good?", "Make the first 30 cans with batch numbers", "Create the Takealot listing (start on Leadtime)", "Black Friday is 27 November: post a teaser"]],
+  ["2026-11-30", "Launch", ["Put the Takealot listing live", "Deliver the pre-orders", "Ask friends and family to buy on Takealot and leave honest reviews", "Film order 1 being packed", "Do your first Sunday check-in"]],
+  ["2026-12-07", "Gift season", ["List the Amora Mini Ritual gift set", "Send 3 to 5 gift sets to influencers with your Takealot link", "Post a Reel that links to Takealot", "Sunday check-in"]],
+  ["2026-12-14", "Christmas push", ["Post 'last day for Christmas delivery' reminders", "Repost every #AmoraGlow post", "Make more cans if you're down to 10", "Sunday check-in"]],
+  ["2026-12-21", "Rest and look back", ["Reply to every review and message", "Look at your check-ins: what sold, what didn't", "Plan the Strawberry Sorbet summer drop for January", "Take a proper break"]]
+].map(([start, name, tasks], i) => {
+  const s0 = new Date(start + "T00:00:00"), e0 = new Date(s0); e0.setDate(e0.getDate() + 6);
+  const f = d => d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  return { id: "wk" + (i + 1), name: `Week ${i + 1} · ${name}`, when: `${f(s0)} to ${f(e0)}`, start: s0, end: e0, tasks };
+});
 const PHASES = [
   { id: "p0", name: "Prove it", when: "October 2026, while testing", tasks: [
     "Give 5 to 10 people a test jar and write down their answers",
@@ -785,7 +815,7 @@ function checklist(container, groups) {
         const id = g.id + i;
         const cb = el("input", { type: "checkbox", id: "t_" + id });
         cb.checked = !!state.done[id];
-        cb.addEventListener("change", () => { state.done[id] = cb.checked; if (!cb.checked) delete state.done[id]; save(); renderPlans(); });
+        cb.addEventListener("change", () => { state.done[id] = cb.checked; if (!cb.checked) delete state.done[id]; save(); container === "weeksList" ? renderWeeks() : renderPlans(); });
         return el("label", { class: "task" + (cb.checked ? " done" : ""), for: "t_" + id }, cb, el("span", {}, tsk));
       }))));
   });
@@ -862,6 +892,17 @@ function renderLog() {
   document.getElementById("lgTotProfit").textContent = R0(cans * Math.max(keep, 0));
   document.getElementById("lgTotRev").textContent = state.log.reduce((a, r) => a + (Number(r.r) || 0), 0);
 }
+function renderWeeks() {
+  checklist("weeksList", WEEKS);
+  const now = new Date(), cards = document.getElementById("weeksList").children;
+  let cur = WEEKS.findIndex(w => now >= w.start && now < new Date(w.end.getTime() + 864e5));
+  if (cur >= 0) cards[cur].classList.add("now");
+  const all = WEEKS.flatMap(g => g.tasks.map((_, i) => g.id + i)), d = all.filter(id => state.done[id]).length;
+  const pct = Math.round(d / all.length * 100);
+  document.getElementById("wkPct").textContent = pct + "%";
+  document.getElementById("wkBar").style.width = pct + "%";
+  document.getElementById("wkNow").textContent = cur >= 0 ? `You're in week ${cur + 1}` : now < WEEKS[0].start ? "Week 1 starts on Monday 5 October" : "All 12 weeks are behind you";
+}
 function renderAll() {
   document.getElementById("boxOn").checked = state.box;
   document.getElementById("price").value = state.price;
@@ -872,7 +913,7 @@ function renderAll() {
   document.getElementById("fcStart").value = state.fc.start;
   document.getElementById("fcGrow").value = state.fc.grow;
   document.getElementById("fcSpend").value = state.fc.spend;
-  renderCosts(); renderMoney(); renderShop(); renderPlans(); renderShots(); renderGo(); renderLog();
+  renderCosts(); renderMoney(); renderShop(); renderPlans(); renderShots(); renderGo(); renderLog(); renderWeeks();
 }
 
 document.getElementById("boxOn").addEventListener("change", e => { state.box = e.target.checked; save(); renderCosts(); renderMoney(); });
