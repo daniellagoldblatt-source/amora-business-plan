@@ -405,14 +405,16 @@ footer .wrap { display: grid; gap: 6px; }
     </div>
     <div class="panel">
       <span class="eyebrow">Your first 12 months on Takealot</span>
-      <p class="note">A planning guess, not a promise. Change the numbers to see when the money you spend to start comes back.</p>
+      <p class="note">A planning guess, not a promise. Change the numbers to see when the money you spend to start comes back. "Takealot fees" includes the R460 monthly account fee.</p>
       <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <label class="note" style="display:grid;gap:4px">Selling price per can<div class="money-in" style="max-width:120px"><span>R</span><input type="number" id="fcPrice" min="0" step="10" inputmode="numeric"></div></label>
         <label class="note" style="display:grid;gap:4px">Cans sold in month 1<div class="money-in" style="max-width:120px;padding-left:0"><input type="number" id="fcStart" min="0" step="1" inputmode="numeric" style="padding-left:10px"></div></label>
         <label class="note" style="display:grid;gap:4px">Growth each month<div class="money-in" style="max-width:120px"><input type="number" id="fcGrow" min="0" step="5" inputmode="numeric"><span style="padding-right:8px">%</span></div></label>
         <label class="note" style="display:grid;gap:4px">Money spent to start<div class="money-in" style="max-width:140px"><span>R</span><input type="number" id="fcSpend" min="0" step="100" inputmode="numeric"></div></label>
       </div>
-      <div class="tbl-scroll"><table>
-        <thead><tr><th>Month</th><th class="num">Cans</th><th class="num">Sales</th><th class="num">Profit</th><th class="num">Running total</th></tr></thead>
+      <div class="stats" id="fcPerCan"></div>
+      <div class="tbl-scroll"><table style="min-width:640px">
+        <thead><tr><th>Month</th><th class="num">Cans</th><th class="num">Sales</th><th class="num">Cost to make</th><th class="num">Takealot fees</th><th class="num">Profit</th><th class="num">Running total</th></tr></thead>
         <tbody id="fcRows"></tbody>
       </table></div>
       <p class="note" id="fcSummary"></p>
@@ -675,7 +677,7 @@ let state = { costs: {}, box: false, price: 229, bundle: 429, goal: 5000, done: 
 let store = null;
 
 const R = n => "R" + (Math.round(n * 100) / 100).toLocaleString("en-ZA", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
-const R0 = n => "R" + Math.round(n).toLocaleString("en-ZA");
+const R0 = n => (Math.round(n) < 0 ? "-R" : "R") + Math.abs(Math.round(n)).toLocaleString("en-ZA");
 function el(tag, attrs = {}, ...kids) {
   const n = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
@@ -814,6 +816,13 @@ function tkKeepNow() { const p = state.price; return p - (p * 0.15 + 32) * 1.15 
 const MONTHS = ["Dec 2026","Jan 2027","Feb 2027","Mar 2027","Apr 2027","May 2027","Jun 2027","Jul 2027","Aug 2027","Sep 2027","Oct 2027","Nov 2027"];
 function renderForecast() {
   const keep = tkKeepNow(), p = state.price, f = state.fc;
+  const cost = unitCost(), fee = (p * 0.15 + 32) * 1.15;
+  document.getElementById("fcPrice").value = p;
+  const pc = document.getElementById("fcPerCan"); pc.replaceChildren();
+  [["You sell each can for", R0(p), "the customer pays this on Takealot"],
+   ["Costs per can", R(cost + fee), `${R(cost)} to make + ${R0(fee)} Takealot fees`],
+   ["You keep per can", R0(keep), "before the R460 monthly account fee"]].forEach(([a, b, c]) =>
+    pc.append(el("div", { class: "stat" }, el("span", {}, a), el("b", {}, b), el("span", {}, c))));
   let run = -f.spend, even = -1, cans = f.start;
   const tb = document.getElementById("fcRows"); tb.replaceChildren();
   MONTHS.forEach((m, i) => {
@@ -822,6 +831,7 @@ function renderForecast() {
     run += profit;
     if (even < 0 && run >= 0) even = i;
     tb.append(el("tr", { class: even === i ? "even-row" : "" }, el("td", {}, m), el("td", { class: "num" }, c), el("td", { class: "num" }, R0(c * p)),
+      el("td", { class: "num" }, R0(c * cost)), el("td", { class: "num" }, R0(c * fee + 460)),
       el("td", { class: "num" }, R0(profit)), el("td", { class: "num" }, R0(run))));
   });
   document.getElementById("fcSummary").textContent = keep <= 0 ? "At this price you lose money on every can. Raise the price in the Money section."
@@ -870,6 +880,7 @@ document.getElementById("price").addEventListener("input", e => { state.price = 
 document.getElementById("goal").addEventListener("input", e => { state.goal = Number(e.target.value) || 0; save(); renderMoney(); });
 [["goNum", "go", "num"], ["goHave", "go", "have"], ["fcStart", "fc", "start"], ["fcGrow", "fc", "grow"], ["fcSpend", "fc", "spend"]].forEach(([id, grp, key]) =>
   document.getElementById(id).addEventListener("input", e => { state[grp] = { ...state[grp], [key]: Number(e.target.value) || 0 }; save(); grp === "go" ? renderGo() : renderForecast(); }));
+document.getElementById("fcPrice").addEventListener("change", e => { const v = Number(e.target.value) || 0; if (!v) return; state.price = v; document.getElementById("price").value = v; save(); renderMoney(); });
 try { document.getElementById("lgDate").value = new Date().toLocaleDateString("en-CA"); } catch (e) {}
 document.getElementById("lgAdd").addEventListener("click", () => {
   const v = id => document.getElementById(id).value;
