@@ -155,6 +155,17 @@ td.keep { font-weight: 700; }
 .shot input { accent-color: var(--caramel); width: 16px; height: 16px; margin-top: 3px; flex: none; }
 .shot.done { opacity: .6; }
 
+.logform { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.logform label { display: grid; gap: 4px; font-size: .8rem; color: var(--muted); font-weight: 600; min-width: 0; }
+.logform label.wide { grid-column: 1 / -1; }
+.logform input { font: 500 .95rem var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; min-width: 0; }
+@media (max-width: 620px) { .logform { grid-template-columns: 1fr 1fr; } }
+.btn { justify-self: start; font: 700 .9rem var(--body); background: var(--caramel-deep); color: var(--bg); border: 0; border-radius: 6px; padding: 10px 18px; cursor: pointer; }
+.logrow { display: grid; grid-template-columns: 110px repeat(3, minmax(0, 70px)) 1fr auto; gap: 10px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: .9rem; font-variant-numeric: tabular-nums; }
+.logrow:last-child { border-bottom: 0; }
+.logrow .x { background: none; border: 0; color: var(--muted); cursor: pointer; font: 600 .8rem var(--body); }
+@media (max-width: 620px) { .logrow { grid-template-columns: 1fr 1fr 1fr; } .logrow .n { grid-column: 1 / -1; } }
+tr.even-row td { background: var(--good-soft); }
 footer { padding-block: 40px 64px; color: var(--muted); font-size: .85rem; }
 footer .wrap { display: grid; gap: 6px; }
 .sync { font-size: .78rem; }
@@ -189,10 +200,14 @@ footer .wrap { display: grid; gap: 6px; }
     <a href="#products">Products</a>
     <a href="#packaging">Packaging</a>
     <a href="#shop">Shopping list</a>
+    <a href="#prove">Prove it</a>
     <a href="#money">Money</a>
     <a href="#sell">Takealot</a>
     <a href="#plan">Launch plan</a>
     <a href="#content">Content</a>
+    <a href="#checkin">Weekly check-in</a>
+    <a href="#setup">Business setup</a>
+    <a href="#risks">Risks</a>
     <a href="#safe">Before you sell</a>
   </div>
 </nav>
@@ -325,9 +340,32 @@ footer .wrap { display: grid; gap: 6px; }
   </div>
 </section>
 
+<section class="block" id="prove">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">05 · Prove it first</span><h2>Find out people want it before you buy stock</h2>
+      <p class="lede">The cheapest mistake is the one you catch before spending. Successful founders test the idea with real people, then set a clear "go" number.</p></div>
+    <div class="grid3">
+      <div class="panel"><span class="eyebrow">1 · Real feedback</span><p>Give 5 to 10 people a test jar. Ask how it smells, how it feels after the shower, what they'd pay, and whether they'd buy it again. Write the answers down word for word.</p></div>
+      <div class="panel"><span class="eyebrow">2 · Polls and waitlist</span><p>Show the texture on Instagram Stories. Run polls on the scent and the can. Ask people to reply "ME" or join a WhatsApp list to be first when it launches.</p></div>
+      <div class="panel"><span class="eyebrow">3 · Pre-orders</span><p>The strongest proof is people paying before it exists. Open a small pre-order for the first 30 cans at your launch price.</p></div>
+    </div>
+    <div class="panel" style="border-color:var(--caramel)">
+      <span class="eyebrow">Your "go" rule</span>
+      <p style="font-family:var(--display);font-size:1.3rem;line-height:1.3">If <span id="goWait">20</span> people join the waitlist or pre-order within 2 weeks, make the first 30 cans and list on Takealot. If not, change one thing (scent, price or photos) and test again.</p>
+      <div class="row" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <label class="note" for="goNum">Your number</label>
+        <div class="money-in" style="max-width:110px;padding-left:0"><input type="number" id="goNum" min="1" step="1" value="20" inputmode="numeric" style="padding-left:10px"></div>
+        <label class="note" for="goHave">People so far</label>
+        <div class="money-in" style="max-width:110px;padding-left:0"><input type="number" id="goHave" min="0" step="1" value="0" inputmode="numeric" style="padding-left:10px"></div>
+        <span class="chip" id="goChip"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="block" id="money">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">05 · Money</span><h2>What one can costs, and what you keep</h2>
+    <div class="head"><span class="eyebrow">06 · Money</span><h2>What one can costs, and what you keep</h2>
       <p class="lede">Every number is editable. Prices come from Takealot on 2 October 2026. Items marked in orange are guesses: replace them with real quotes.</p></div>
     <div class="calc">
       <div class="panel">
@@ -365,12 +403,26 @@ footer .wrap { display: grid; gap: 6px; }
       <div class="stat"><span>Takealot's R460 monthly fee</span><b id="tkBreak">0 cans</b><span>sold each month just to cover it</span></div>
       <div class="stat"><span>First stock (about 20 cans)</span><b id="testKit">R0</b><span>ingredients once your recipe is final</span></div>
     </div>
+    <div class="panel">
+      <span class="eyebrow">Your first 12 months on Takealot</span>
+      <p class="note">A planning guess, not a promise. Change the numbers to see when the money you spend to start comes back.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <label class="note" style="display:grid;gap:4px">Cans sold in month 1<div class="money-in" style="max-width:120px;padding-left:0"><input type="number" id="fcStart" min="0" step="1" inputmode="numeric" style="padding-left:10px"></div></label>
+        <label class="note" style="display:grid;gap:4px">Growth each month<div class="money-in" style="max-width:120px"><input type="number" id="fcGrow" min="0" step="5" inputmode="numeric"><span style="padding-right:8px">%</span></div></label>
+        <label class="note" style="display:grid;gap:4px">Money spent to start<div class="money-in" style="max-width:140px"><span>R</span><input type="number" id="fcSpend" min="0" step="100" inputmode="numeric"></div></label>
+      </div>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>Month</th><th class="num">Cans</th><th class="num">Sales</th><th class="num">Profit</th><th class="num">Running total</th></tr></thead>
+        <tbody id="fcRows"></tbody>
+      </table></div>
+      <p class="note" id="fcSummary"></p>
+    </div>
   </div>
 </section>
 
 <section class="block" id="sell">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">06 · Takealot</span><h2>Takealot is the main shop</h2>
+    <div class="head"><span class="eyebrow">07 · Takealot</span><h2>Takealot is the main shop</h2>
       <p class="lede">South Africa's biggest online store. Takealot stores, packs and delivers for you, so you only make and send stock. The work is winning the search result and getting the first reviews.</p></div>
     <div class="grid2">
       <div class="panel"><span class="eyebrow">What you need to sign up</span>
@@ -415,7 +467,7 @@ footer .wrap { display: grid; gap: 6px; }
 
 <section class="block" id="plan">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">07 · Launch plan</span><h2>From kitchen test to first sale</h2>
+    <div class="head"><span class="eyebrow">08 · Launch plan</span><h2>From kitchen test to first sale</h2>
       <p class="lede">Tick things off as you go. Dates are a suggestion: move them if you need to. The rule from your concept stays: don't add anything else until the first real prototype exists.</p></div>
     <div class="overall"><b id="overallPct">0%</b><div class="bar"><i id="overallBar"></i></div><span class="note" id="overallCount"></span></div>
     <div class="phases" id="phases"></div>
@@ -424,7 +476,7 @@ footer .wrap { display: grid; gap: 6px; }
 
 <section class="block" id="content">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">08 · Content</span><h2>Make them think "I need to film this"</h2>
+    <div class="head"><span class="eyebrow">09 · Content</span><h2>Make them think "I need to film this"</h2>
       <p class="lede">Build content around how it looks, sounds and feels, not "product on white, buy now." Tick shots as you film them.</p></div>
     <div class="shots" id="shots"></div>
     <div class="grid2">
@@ -434,9 +486,64 @@ footer .wrap { display: grid; gap: 6px; }
   </div>
 </section>
 
+<section class="block" id="checkin">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">10 · Weekly check-in</span><h2>Ten minutes every Sunday</h2>
+      <p class="lede">What gets measured gets better. Write down the same few numbers every week and you'll see what's working.</p></div>
+    <div class="panel">
+      <span class="eyebrow">Add this week</span>
+      <div class="logform">
+        <label>Week of<input type="date" id="lgDate"></label>
+        <label>Cans sold<input type="number" id="lgCans" min="0" step="1" inputmode="numeric"></label>
+        <label>New reviews<input type="number" id="lgRev" min="0" step="1" inputmode="numeric"></label>
+        <label>Cans in stock<input type="number" id="lgStock" min="0" step="1" inputmode="numeric"></label>
+        <label class="wide">What worked / what to change<input type="text" id="lgNote" autocomplete="off"></label>
+      </div>
+      <button class="btn" id="lgAdd" type="button">Save this week</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><span>Cans sold so far</span><b id="lgTotCans">0</b><span id="lgTotWeeks">0 weeks logged</span></div>
+      <div class="stat"><span>Profit so far (Takealot)</span><b id="lgTotProfit">R0</b><span>before the monthly fee</span></div>
+      <div class="stat"><span>Reviews so far</span><b id="lgTotRev">0</b><span>aim for 5 before ads</span></div>
+    </div>
+    <div class="panel"><div id="lgList"></div></div>
+  </div>
+</section>
+
+<section class="block" id="setup">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">11 · Business setup</span><h2>Make it official, step by step</h2>
+      <p class="lede">You don't need to do all of this on day one. Start simple and add as sales grow.</p></div>
+    <div class="phases" id="setupList"></div>
+    <div class="grid2">
+      <div class="panel"><span class="eyebrow">Money help: NYDA grant</span><p>If you're 18 to 35 and a South African citizen, the National Youth Development Agency gives grants that don't need to be paid back, plus mentoring and business training. You apply online, do a business training course and give a 10-minute pitch. Processing takes about 30 working days.</p><p class="note">This plan, your numbers and your pitch below are most of what you'd need.</p></div>
+      <div class="panel"><span class="eyebrow">Your pitch, in your words</span><p>Amora is a South African beauty brand creating dessert-inspired, sensorial self-care products designed to make everyday beauty feel like a little ritual. Its first hero product, Crème Brûlée Body Polish, combines a warm brown-sugar texture with distinctive clear can-style packaging, a reusable lid and small hidden self-love messages. Amora makes inexpensive packaging memorable through clever details, collectible seasonal artwork, limited numbered drops and highly shareable textures, all centred on one idea: Don't compare. Just glow.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="risks">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">12 · Risks and plan B</span><h2>What could go wrong, and what you'd do</h2></div>
+    <div class="panel"><div class="tbl-scroll"><table>
+      <thead><tr><th>If this happens</th><th>Plan B</th></tr></thead>
+      <tbody>
+        <tr><td>Takealot takes a long time to approve you</td><td>Sell on Instagram, WhatsApp and Amazon.co.za meanwhile. Keep collecting reviews and photos.</td></tr>
+        <tr><td>Oil separates or floats on top</td><td>Add a little more sugar or coconut oil. Test in a warm room before you make a big batch.</td></tr>
+        <tr><td>The vanilla turns the scrub darker</td><td>Normal with vanilla. Brown sugar hides it. Mention "colour may deepen" on the label.</td></tr>
+        <tr><td>Sales are slow in the first month</td><td>Change one thing at a time: main photo, price, then title. Check your weekly numbers to see what moved.</td></tr>
+        <tr><td>Someone has a skin reaction</td><td>Refund kindly, ask what happened, check the fragrance level. Keep your batch records so you can trace it.</td></tr>
+        <tr><td>Bad review on Takealot</td><td>Reply politely and fix the cause. A few honest reviews of any kind are better than none.</td></tr>
+        <tr><td>A bigger brand copies the can idea</td><td>Your name, messages, drops and community are harder to copy. Register the Amora trademark.</td></tr>
+        <tr><td>Stock runs out during a sale</td><td>Track stock weekly. Make the next batch when you're down to 10 cans.</td></tr>
+      </tbody>
+    </table></div></div>
+  </div>
+</section>
+
 <section class="block" id="safe">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">09 · Before you sell</span><h2>Safe and legal first</h2>
+    <div class="head"><span class="eyebrow">13 · Before you sell</span><h2>Safe and legal first</h2>
       <p class="lede">The kitchen version is product development, not the final recipe. These need to be done before a customer gets a can.</p></div>
     <div class="phases" id="safeList"></div>
     <p class="note">This is a starting checklist, not legal advice. South Africa's CTFA (Cosmetic, Toiletry &amp; Fragrance Association) has guidance on cosmetic labels and safety.</p>
@@ -479,7 +586,32 @@ const TOOLS = [
   ["Vanilla fragrance 50ml", "Skin-safe vanilla 50ml", 149],
   ["Preservative 100g", "NBT Naturals phenoxyethanol 100g", 119]
 ];
+const SETUP = [
+  { id: "su1", name: "Start", when: "Now", tasks: [
+    "Start as a sole proprietor: no company registration needed, and Takealot accepts individuals",
+    "Open a separate bank account just for Amora",
+    "Track every rand in and out in one simple sheet",
+    "Keep receipts for everything you buy for the business" ] },
+  { id: "su2", name: "Protect the brand", when: "Before you grow", tasks: [
+    "Search the CIPC trademark database to check nobody already owns \"Amora\" for cosmetics",
+    "File a trademark for Amora in class 3 (cosmetics) on CIPC: R590 if you do it yourself",
+    "Get a quote for product liability insurance (in case of a skin reaction claim)" ] },
+  { id: "su3", name: "Tax", when: "As you earn", tasks: [
+    "Register for income tax with SARS once Amora makes a profit",
+    "Ask about Turnover Tax: a simpler small-business tax for turnover up to R2.3 million a year",
+    "VAT: only compulsory above R2.3 million a year in sales, so not needed to start" ] },
+  { id: "su4", name: "Get support", when: "Optional", tasks: [
+    "Check if you qualify for an NYDA grant (age 18 to 35)",
+    "Find one mentor: someone who has sold on Takealot or runs a beauty brand",
+    "Join a South African small-business or Takealot sellers group to ask questions" ] }
+];
 const PHASES = [
+  { id: "p0", name: "Prove it", when: "October 2026, while testing", tasks: [
+    "Give 5 to 10 people a test jar and write down their answers",
+    "Post the texture on Stories with a scent poll",
+    "Start a waitlist (WhatsApp list or 'reply ME')",
+    "Set your 'go' number and track it in the Prove it section",
+    "Change one thing if you don't hit the number, then test again" ] },
   { id: "p1", name: "Prototype", when: "October 2026", tasks: [
     "Get a 10ml skin-safe vanilla fragrance (use sugar and sunflower oil from home)",
     "Get the fragrance supplier's safety sheet and the max % allowed on skin",
@@ -539,7 +671,7 @@ const SAFE = [
 ];
 const SHOTS = ["Sugar falling into a bowl", "Caramel swirling", "Vanilla pods close up", "Spoon scooping the polish", "Close-up of the sugar crystals", "The sound of opening the can", "Lid popping off", "The first scoop", "Polish melting on wet skin", "Putting the reusable lid on", "A row of numbered drop cans", "Packing order 17 / 30", "Customer's bathroom shelf", "Real crème brûlée turning into the product"];
 
-let state = { costs: {}, box: false, price: 229, bundle: 429, goal: 5000, done: {} };
+let state = { costs: {}, box: false, price: 229, bundle: 429, goal: 5000, done: {}, go: { num: 20, have: 0 }, fc: { start: 10, grow: 15, spend: 2500 }, log: [] };
 let store = null;
 
 const R = n => "R" + (Math.round(n * 100) / 100).toLocaleString("en-ZA", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
@@ -618,6 +750,7 @@ function renderMoney() {
     ? `At ${R0(p)} you lose money on Takealot. Raise the price or lower your costs.`
     : `At ${R0(p)} you keep ${R0(tkKeep)} per can on Takealot (${Math.round(tkKeep / p * 100)}% of the price).`;
   document.getElementById("tkBreak").textContent = tkKeep > 0 ? Math.ceil(460 / tkKeep) + " cans" : "You'd lose money";
+  renderForecast(); if (document.getElementById("lgList").childElementCount) renderLog();
   document.getElementById("testKit").textContent = R0(TOOLS.reduce((a, x) => a + x[2], 0));
 }
 
@@ -669,24 +802,82 @@ function renderShots() {
 function renderPlans() {
   checklist("phases", PHASES);
   checklist("safeList", SAFE);
-  const all = [...PHASES, ...SAFE].flatMap(g => g.tasks.map((_, i) => g.id + i));
+  checklist("setupList", SETUP);
+  const all = [...PHASES, ...SAFE, ...SETUP].flatMap(g => g.tasks.map((_, i) => g.id + i));
   const d = all.filter(id => state.done[id]).length;
   const pct = Math.round(d / all.length * 100);
   document.getElementById("overallPct").textContent = pct + "%";
   document.getElementById("overallBar").style.width = pct + "%";
-  document.getElementById("overallCount").textContent = `${d} of ${all.length} steps done, including "Before you sell"`;
+  document.getElementById("overallCount").textContent = `${d} of ${all.length} steps done, including setup and "Before you sell"`;
+}
+function tkKeepNow() { const p = state.price; return p - (p * 0.15 + 32) * 1.15 - unitCost(); }
+const MONTHS = ["Dec 2026","Jan 2027","Feb 2027","Mar 2027","Apr 2027","May 2027","Jun 2027","Jul 2027","Aug 2027","Sep 2027","Oct 2027","Nov 2027"];
+function renderForecast() {
+  const keep = tkKeepNow(), p = state.price, f = state.fc;
+  let run = -f.spend, even = -1, cans = f.start;
+  const tb = document.getElementById("fcRows"); tb.replaceChildren();
+  MONTHS.forEach((m, i) => {
+    if (i) cans = cans * (1 + f.grow / 100);
+    const c = Math.round(cans), profit = c * keep - 460;
+    run += profit;
+    if (even < 0 && run >= 0) even = i;
+    tb.append(el("tr", { class: even === i ? "even-row" : "" }, el("td", {}, m), el("td", { class: "num" }, c), el("td", { class: "num" }, R0(c * p)),
+      el("td", { class: "num" }, R0(profit)), el("td", { class: "num" }, R0(run))));
+  });
+  document.getElementById("fcSummary").textContent = keep <= 0 ? "At this price you lose money on every can. Raise the price in the Money section."
+    : even >= 0 ? `You'd earn back your start-up money in ${MONTHS[even]} (green row). After 12 months you'd be ${R0(run)} ahead.`
+    : `With these numbers you wouldn't earn back your start-up money within 12 months. Try more sales or a lower cost.`;
+}
+function renderGo() {
+  const g = state.go;
+  document.getElementById("goWait").textContent = g.num;
+  const chip = document.getElementById("goChip");
+  const hit = g.have >= g.num;
+  chip.className = "chip " + (hit ? "good" : g.have >= g.num / 2 ? "ok" : "bad");
+  chip.textContent = hit ? "Go! Make the first batch" : `${Math.max(g.num - g.have, 0)} more to go`;
+}
+function renderLog() {
+  const keep = tkKeepNow();
+  const list = document.getElementById("lgList"); list.replaceChildren();
+  const rows = [...state.log].sort((a, b) => (b.d || "").localeCompare(a.d || ""));
+  if (!rows.length) list.append(el("p", { class: "note" }, "No weeks logged yet. Your first check-in will show here."));
+  else list.append(el("div", { class: "logrow note" }, el("b", {}, "Week"), el("b", {}, "Sold"), el("b", {}, "Reviews"), el("b", {}, "Stock"), el("b", { class: "n" }, "Note"), el("span", {})));
+  rows.forEach(r => list.append(el("div", { class: "logrow" },
+    el("span", {}, r.d ? new Date(r.d + "T12:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short" }) : "-"),
+    el("span", {}, r.c ?? 0), el("span", {}, r.r ?? 0), el("span", {}, r.s ?? "-"), el("span", { class: "n" }, r.n || ""),
+    el("button", { class: "x", type: "button", onclick: () => { state.log = state.log.filter(x => x !== r); save(); renderLog(); } }, "Remove"))));
+  const cans = state.log.reduce((a, r) => a + (Number(r.c) || 0), 0);
+  document.getElementById("lgTotCans").textContent = cans;
+  document.getElementById("lgTotWeeks").textContent = state.log.length + (state.log.length === 1 ? " week logged" : " weeks logged");
+  document.getElementById("lgTotProfit").textContent = R0(cans * Math.max(keep, 0));
+  document.getElementById("lgTotRev").textContent = state.log.reduce((a, r) => a + (Number(r.r) || 0), 0);
 }
 function renderAll() {
   document.getElementById("boxOn").checked = state.box;
   document.getElementById("price").value = state.price;
   document.getElementById("goal").value = state.goal;
   document.getElementById("bundle").value = state.bundle;
-  renderCosts(); renderMoney(); renderShop(); renderPlans(); renderShots();
+  document.getElementById("goNum").value = state.go.num;
+  document.getElementById("goHave").value = state.go.have;
+  document.getElementById("fcStart").value = state.fc.start;
+  document.getElementById("fcGrow").value = state.fc.grow;
+  document.getElementById("fcSpend").value = state.fc.spend;
+  renderCosts(); renderMoney(); renderShop(); renderPlans(); renderShots(); renderGo(); renderLog();
 }
 
 document.getElementById("boxOn").addEventListener("change", e => { state.box = e.target.checked; save(); renderCosts(); renderMoney(); });
 document.getElementById("price").addEventListener("input", e => { state.price = Number(e.target.value); save(); renderMoney(); });
 document.getElementById("goal").addEventListener("input", e => { state.goal = Number(e.target.value) || 0; save(); renderMoney(); });
+[["goNum", "go", "num"], ["goHave", "go", "have"], ["fcStart", "fc", "start"], ["fcGrow", "fc", "grow"], ["fcSpend", "fc", "spend"]].forEach(([id, grp, key]) =>
+  document.getElementById(id).addEventListener("input", e => { state[grp] = { ...state[grp], [key]: Number(e.target.value) || 0 }; save(); grp === "go" ? renderGo() : renderForecast(); }));
+try { document.getElementById("lgDate").value = new Date().toLocaleDateString("en-CA"); } catch (e) {}
+document.getElementById("lgAdd").addEventListener("click", () => {
+  const v = id => document.getElementById(id).value;
+  if (!v("lgCans") && !v("lgNote")) { document.getElementById("lgCans").focus(); return; }
+  state.log = [...state.log, { d: v("lgDate"), c: Number(v("lgCans")) || 0, r: Number(v("lgRev")) || 0, s: v("lgStock") === "" ? null : Number(v("lgStock")), n: v("lgNote").trim() }];
+  ["lgCans", "lgRev", "lgStock", "lgNote"].forEach(id => document.getElementById(id).value = "");
+  save(); renderLog();
+});
 document.getElementById("bundle").addEventListener("input", e => { state.bundle = Number(e.target.value) || 0; save(); renderMoney(); });
 
 // highlight current section in the bar
@@ -710,7 +901,8 @@ renderAll();
     const snap = await store.get();
     if (snap.exists) {
       const r = snap.data();
-      state = { costs: r.costs || {}, box: !!r.box, price: r.price || 229, bundle: r.bundle || 429, goal: r.goal ?? 5000, done: r.done || {} };
+      state = { ...state, ...r, costs: r.costs || {}, done: r.done || {}, go: r.go || state.go, fc: r.fc || state.fc, log: r.log || [] };
+      delete state.updated;
       try { localStorage.setItem("amora-plan", JSON.stringify(state)); } catch (e) {}
       renderAll();
     } else if (Object.keys(state.done).length || Object.keys(state.costs).length) {
