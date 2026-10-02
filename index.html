@@ -168,6 +168,7 @@ td.keep { font-weight: 700; }
 tr.even-row td { background: var(--good-soft); }
 .phase.now { border: 2px solid var(--caramel); }
 .phase.now h3::after { content: "  · This week"; font-family: var(--body); font-size: .8rem; font-weight: 700; color: var(--caramel); }
+.sel { font: 600 .95rem var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px; }
 footer { padding-block: 40px 64px; color: var(--muted); font-size: .85rem; }
 footer .wrap { display: grid; gap: 6px; }
 .sync { font-size: .78rem; }
@@ -191,7 +192,7 @@ footer .wrap { display: grid; gap: 6px; }
       <span>First product <b>Crème Brûlée Body Polish</b></span>
       <span>Size <b>250g</b></span>
       <span>Suggested price <b id="heroPrice">R229</b></span>
-      <span>Main shop <b>Takealot</b></span>
+      <span>Main shops <b>Takealot + Amazon</b></span>
     </div>
   </div>
 </header>
@@ -407,9 +408,10 @@ footer .wrap { display: grid; gap: 6px; }
       <div class="stat"><span>First stock (about 20 cans)</span><b id="testKit">R0</b><span>ingredients once your recipe is final</span></div>
     </div>
     <div class="panel">
-      <span class="eyebrow">Your first 12 months on Takealot</span>
-      <p class="note">A planning guess, not a promise. Change the numbers to see when the money you spend to start comes back. "Takealot fees" includes the R460 monthly account fee.</p>
+      <span class="eyebrow">Your first 12 months: Takealot or Amazon</span>
+      <p class="note">A planning guess, not a promise. Change the numbers to see when the money you spend to start comes back. Fees include each shop's monthly account fee. Switch the shop to compare Takealot and Amazon.</p>
       <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <label class="note" style="display:grid;gap:4px">Shop<select id="fcCh" class="sel"><option value="tk">Takealot</option><option value="az">Amazon.co.za</option></select></label>
         <label class="note" style="display:grid;gap:4px">Selling price per can<div class="money-in" style="max-width:120px"><span>R</span><input type="number" id="fcPrice" min="0" step="10" inputmode="numeric"></div></label>
         <label class="note" style="display:grid;gap:4px">Cans sold in month 1<div class="money-in" style="max-width:120px;padding-left:0"><input type="number" id="fcStart" min="0" step="1" inputmode="numeric" style="padding-left:10px"></div></label>
         <label class="note" style="display:grid;gap:4px">Growth each month<div class="money-in" style="max-width:120px"><input type="number" id="fcGrow" min="0" step="5" inputmode="numeric"><span style="padding-right:8px">%</span></div></label>
@@ -417,7 +419,7 @@ footer .wrap { display: grid; gap: 6px; }
       </div>
       <div class="stats" id="fcPerCan"></div>
       <div class="tbl-scroll"><table style="min-width:640px">
-        <thead><tr><th>Month</th><th class="num">Cans</th><th class="num">Sales</th><th class="num">Cost to make</th><th class="num">Takealot fees</th><th class="num">Profit</th><th class="num">Running total</th></tr></thead>
+        <thead><tr><th>Month</th><th class="num">Cans</th><th class="num">Sales</th><th class="num">Cost to make</th><th class="num" id="fcFeeHead">Takealot fees</th><th class="num">Profit</th><th class="num">Running total</th></tr></thead>
         <tbody id="fcRows"></tbody>
       </table></div>
       <p class="note" id="fcSummary"></p>
@@ -461,10 +463,28 @@ footer .wrap { display: grid; gap: 6px; }
         </ul>
       </div>
     </div>
-    <div class="head" style="margin-top:12px"><span class="eyebrow">Other options, welcome alongside Takealot</span></div>
+        <div class="head" style="margin-top:12px"><span class="eyebrow">Amazon.co.za, alongside Takealot</span><h3>Lower fees until 31 March 2027</h3></div>
+    <div class="grid2">
+      <div class="panel"><span class="eyebrow">Why Amazon too</span>
+        <ul class="clean">
+          <li>Until 31 March 2027: <b>5% fee</b> (minimum R10), <b>R1 a month</b>, and <b>free packing and storage</b> if Amazon holds your stock (FBA).</li>
+          <li>After that: about 13% for beauty, R27 to R29 packing per order, R400 a month.</li>
+          <li>Same photos, barcodes and listing text as Takealot, so it's little extra work.</li>
+        </ul>
+      </div>
+      <div class="panel"><span class="eyebrow">How it works</span>
+        <ul class="clean">
+          <li>Register on Amazon Seller Central with your ID and bank details.</li>
+          <li><b>FBA:</b> you send stock to Amazon's warehouse and they pack and deliver. Free until 31 March 2027.</li>
+          <li><b>Easy Ship:</b> you keep stock at home and Amazon collects each order: R20 per order for items up to R500.</li>
+          <li>Compare both shops in the 12-month forecast with the "Shop" switch.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="head" style="margin-top:12px"><span class="eyebrow">Other options, welcome alongside</span></div>
     <div class="grid3">
       <div class="panel"><h3>Instagram + WhatsApp</h3><p>Keeps the most per can and builds Amora. Good for drops and gift sets.</p></div>
-      <div class="panel"><h3>Amazon.co.za</h3><p>Only 5% until 31 March 2027 and R1 a month. A cheap second online shop.</p></div>
+      <div class="panel"><h3>Markets</h3><p>Real reactions and great filming. People can smell it and scoop it.</p></div>
       <div class="panel"><h3>Markets, spas, Faithful to Nature</h3><p>Markets for real reactions and filming. Shops and Faithful to Nature buy at about half price, but in bulk.</p></div>
     </div>
   </div>
@@ -620,7 +640,7 @@ const SETUP = [
     "Join a South African small-business or Takealot sellers group to ask questions" ] }
 ];
 const WEEKS = [
-  ["2026-10-05", "Start testing", ["Buy a 10ml skin-safe vanilla fragrance and 1L odourless coconut oil (and a 0.1g scale if you need one)", "Make test batch 1 (100g) with sugar and sunflower oil from home", "Write down every gram", "Apply for a Takealot seller account", "Open a separate bank account for Amora"]],
+  ["2026-10-05", "Start testing", ["Buy a 10ml skin-safe vanilla fragrance and 1L odourless coconut oil (and a 0.1g scale if you need one)", "Make test batch 1 (100g) with sugar and sunflower oil from home", "Write down every gram", "Apply for a Takealot seller account and an Amazon.co.za seller account", "Open a separate bank account for Amora"]],
   ["2026-10-12", "Fix the recipe", ["Make test batches 2 and 3, changing one thing each time", "Ask the fragrance seller for the safety sheet and skin limit", "Give 5 people a test jar", "Post the texture on Stories with a scent poll", "Start the waitlist (WhatsApp list or 'reply ME')"]],
   ["2026-10-19", "Listen and get quotes", ["Collect your testers' answers word for word", "Ask 2 or 3 suppliers for prices on the clear cans and lids", "Order 2 or 3 sample cans", "Search CIPC to check nobody owns 'Amora' for cosmetics", "Set your 'go' number in the Prove it section"]],
   ["2026-10-26", "Final recipe and design", ["Decide the final recipe and write it down", "Start the 4-week stability test: one jar somewhere warm, one somewhere cool", "Design the Crème Brûlée label, seal sticker and #AmoraGlow card", "Use the polish yourself every few days and note anything that changes"]],
@@ -659,6 +679,7 @@ const PHASES = [
     "Decide: gold or cream reusable lid" ] },
   { id: "tk", name: "Set up Takealot", when: "October 2026, start now (approval takes time)", tasks: [
     "Apply on the Takealot Seller Portal with your ID and bank details",
+    "Register on Amazon Seller Central (Professional plan is R1 a month until 31 March 2027)",
     "Buy barcodes: one for Crème Brûlée, plus extras for future scents and sets",
     "Take the white-background main photo of the real can",
     "Shoot 4 to 6 more photos: texture, on skin, lid, in a hand, box",
@@ -667,7 +688,7 @@ const PHASES = [
   { id: "p3", name: "Launch Crème Brûlée on Takealot", when: "November to early December", tasks: [
     "Finish the 'Before you sell' checklist below",
     "Make the first batch of 30 cans with batch numbers",
-    "Put the listing live on Takealot",
+    "Put the listing live on Takealot and Amazon.co.za",
     "Ask friends and family to buy on Takealot and leave honest reviews",
     "Post a Reel that links to the Takealot listing",
     "Check the Promotions Calendar for Blue Dot Sale and Christmas deals",
@@ -703,7 +724,7 @@ const SAFE = [
 ];
 const SHOTS = ["Sugar falling into a bowl", "Caramel swirling", "Vanilla pods close up", "Spoon scooping the polish", "Close-up of the sugar crystals", "The sound of opening the can", "Lid popping off", "The first scoop", "Polish melting on wet skin", "Putting the reusable lid on", "A row of numbered drop cans", "Packing order 17 / 30", "Customer's bathroom shelf", "Real crème brûlée turning into the product"];
 
-let state = { costs: {}, box: false, price: 229, bundle: 429, goal: 5000, done: {}, go: { num: 20, have: 0 }, fc: { start: 10, grow: 15, spend: 2500 }, log: [] };
+let state = { costs: {}, box: false, price: 229, bundle: 429, goal: 5000, done: {}, go: { num: 20, have: 0 }, fc: { ch: "tk", start: 10, grow: 15, spend: 2500 }, log: [] };
 let store = null;
 
 const R = n => "R" + (Math.round(n * 100) / 100).toLocaleString("en-ZA", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
@@ -762,7 +783,8 @@ function renderMoney() {
     { w: "Takealot · 1 can", how: "15% + ~R32 delivery, plus VAT (and R460 a month)", fee: tkFee, main: true },
     { w: "Takealot · 2-pack", how: `2 cans for ${R0(bp)}, delivery fee charged once`, fee: tkFeeFor(bp), price: bp, units: 2, main: true },
     { w: "Instagram / WhatsApp", how: "Nothing. Customer pays delivery", fee: 0 },
-    { w: "Amazon.co.za", how: "5% until 31 March 2027", fee: p * 0.05 },
+    { w: "Amazon.co.za · now", how: "5% (min R10) + VAT. R1 a month, free packing and storage until 31 March 2027", fee: azFee(p, true), main: true },
+    { w: "Amazon.co.za · from April 2027", how: "13% + ~R28 packing (FBA), plus VAT, plus R460 a month", fee: azFee(p, false) },
     { w: "Markets", how: "Stall fee only, paid per day", fee: 0 },
     { w: "Shops and spas", how: "They buy at about half price", fee: p / 2 }
   ];
@@ -842,31 +864,41 @@ function renderPlans() {
   document.getElementById("overallBar").style.width = pct + "%";
   document.getElementById("overallCount").textContent = `${d} of ${all.length} steps done, including setup and "Before you sell"`;
 }
+const MON = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
+const isPromo = m => { const [mm, yy] = m.split(" "); return Number(yy) * 12 + MON[mm] < 2027 * 12 + 3; };
+function azFee(price, promo) { return promo ? Math.max(price * 0.05, 10) * 1.15 : (Math.max(price * 0.13, 10) + 28) * 1.15; }
+const chFee = (ch, price, promo) => ch === "az" ? azFee(price, promo) : (price * 0.15 + 32) * 1.15;
+const chMonthly = (ch, promo) => ch === "az" ? (promo ? 1.15 : 460) : 460;
 function tkKeepNow() { const p = state.price; return p - (p * 0.15 + 32) * 1.15 - unitCost(); }
 const MONTHS = ["Dec 2026","Jan 2027","Feb 2027","Mar 2027","Apr 2027","May 2027","Jun 2027","Jul 2027","Aug 2027","Sep 2027","Oct 2027","Nov 2027"];
 function renderForecast() {
-  const keep = tkKeepNow(), p = state.price, f = state.fc;
-  const cost = unitCost(), fee = (p * 0.15 + 32) * 1.15;
+  const p = state.price, f = state.fc, ch = f.ch || "tk", cost = unitCost();
+  const shop = ch === "az" ? "Amazon" : "Takealot";
   document.getElementById("fcPrice").value = p;
+  document.getElementById("fcCh").value = ch;
+  document.getElementById("fcFeeHead").textContent = shop + " fees";
+  const promo0 = isPromo(MONTHS[0]), fee0 = chFee(ch, p, promo0), keep0 = p - fee0 - cost;
   const pc = document.getElementById("fcPerCan"); pc.replaceChildren();
-  [["You sell each can for", R0(p), "the customer pays this on Takealot"],
-   ["Costs per can", R(cost + fee), `${R(cost)} to make + ${R0(fee)} Takealot fees`],
-   ["You keep per can", R0(keep), "before the R460 monthly account fee"]].forEach(([a, b, c]) =>
+  [["You sell each can for", R0(p), `the customer pays this on ${shop}`],
+   ["Costs per can", R(cost + fee0), `${R(cost)} to make + ${R0(fee0)} ${shop} fees`],
+   ["You keep per can", R0(keep0), ch === "az" ? (promo0 ? "with Amazon's low fees until 31 March 2027" : "with Amazon's normal fees") : "before the R460 monthly account fee"]].forEach(([a, b, c]) =>
     pc.append(el("div", { class: "stat" }, el("span", {}, a), el("b", {}, b), el("span", {}, c))));
-  let run = -f.spend, even = -1, cans = f.start;
+  let run = -f.spend, even = -1, n = f.start;
   const tb = document.getElementById("fcRows"); tb.replaceChildren();
   MONTHS.forEach((m, i) => {
-    if (i) cans = cans * (1 + f.grow / 100);
-    const c = Math.round(cans), profit = c * keep - 460;
+    if (i) n = n * (1 + f.grow / 100);
+    const promo = isPromo(m), fee = chFee(ch, p, promo), monthly = chMonthly(ch, promo);
+    const c = Math.round(n), profit = c * (p - fee - cost) - monthly;
     run += profit;
     if (even < 0 && run >= 0) even = i;
-    tb.append(el("tr", { class: even === i ? "even-row" : "" }, el("td", {}, m), el("td", { class: "num" }, c), el("td", { class: "num" }, R0(c * p)),
-      el("td", { class: "num" }, R0(c * cost)), el("td", { class: "num" }, R0(c * fee + 460)),
+    tb.append(el("tr", { class: even === i ? "even-row" : "" }, el("td", {}, m + (ch === "az" && promo ? " *" : "")), el("td", { class: "num" }, c), el("td", { class: "num" }, R0(c * p)),
+      el("td", { class: "num" }, R0(c * cost)), el("td", { class: "num" }, R0(c * fee + monthly)),
       el("td", { class: "num" }, R0(profit)), el("td", { class: "num" }, R0(run))));
   });
-  document.getElementById("fcSummary").textContent = keep <= 0 ? "At this price you lose money on every can. Raise the price in the Money section."
+  document.getElementById("fcSummary").textContent = (keep0 <= 0 ? "At this price you lose money on every can. Raise the price in the Money section."
     : even >= 0 ? `You'd earn back your start-up money in ${MONTHS[even]} (green row). After 12 months you'd be ${R0(run)} ahead.`
-    : `With these numbers you wouldn't earn back your start-up money within 12 months. Try more sales or a lower cost.`;
+    : `With these numbers you wouldn't earn back your start-up money within 12 months. Try more sales or a lower cost.`)
+    + (ch === "az" ? " * Months marked with a star use Amazon's low fees, which end on 31 March 2027." : "");
 }
 function renderGo() {
   const g = state.go;
@@ -919,6 +951,7 @@ function renderAll() {
 document.getElementById("boxOn").addEventListener("change", e => { state.box = e.target.checked; save(); renderCosts(); renderMoney(); });
 document.getElementById("price").addEventListener("input", e => { state.price = Number(e.target.value); save(); renderMoney(); });
 document.getElementById("goal").addEventListener("input", e => { state.goal = Number(e.target.value) || 0; save(); renderMoney(); });
+document.getElementById("fcCh").addEventListener("change", e => { state.fc = { ...state.fc, ch: e.target.value }; save(); renderForecast(); });
 [["goNum", "go", "num"], ["goHave", "go", "have"], ["fcStart", "fc", "start"], ["fcGrow", "fc", "grow"], ["fcSpend", "fc", "spend"]].forEach(([id, grp, key]) =>
   document.getElementById(id).addEventListener("input", e => { state[grp] = { ...state[grp], [key]: Number(e.target.value) || 0 }; save(); grp === "go" ? renderGo() : renderForecast(); }));
 document.getElementById("fcPrice").addEventListener("change", e => { const v = Number(e.target.value) || 0; if (!v) return; state.price = v; document.getElementById("price").value = v; save(); renderMoney(); });
@@ -952,7 +985,7 @@ renderAll();
     store = db.collection("data/users/" + id).doc("amora-plan");
     const snap = await store.get();
     if (snap.exists) {
-      const r = snap.data();
+      const r = JSON.parse(JSON.stringify(snap.data()));
       state = { ...state, ...r, costs: r.costs || {}, done: r.done || {}, go: r.go || state.go, fc: r.fc || state.fc, log: r.log || [] };
       delete state.updated;
       try { localStorage.setItem("amora-plan", JSON.stringify(state)); } catch (e) {}
