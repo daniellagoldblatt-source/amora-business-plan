@@ -1,0 +1,736 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Amora Business Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;500;600;700&display=swap">
+</head><body>
+<style>
+/* Layout: a brand book that turns into a working plan. Sticky section bar, wide hero in caramel, then calm sections; the money and launch sections are live tools. */
+:root {
+  --bg: #FBF6F1;
+  --surface: #FFFFFF;
+  --ink: #3A2418;
+  --muted: #7D6556;
+  --line: #EADCD0;
+  --caramel: #B8752F;
+  --caramel-deep: #8E5520;
+  --blush: #F3D9D6;
+  --blush-ink: #9C4E57;
+  --gold: #B8975A;
+  --good: #3F7A50;
+  --good-soft: #E1EFE3;
+  --warn: #A0522D;
+  --warn-soft: #F8E6D8;
+  --display: "Gloock", "Didot", Georgia, serif;
+  --body: "Manrope", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1C1410; --surface: #261B15; --ink: #F3E7DC; --muted: #BCA593; --line: #3D2C22;
+    --caramel: #E0A35E; --caramel-deep: #F0BD7E; --blush: #3E2628; --blush-ink: #F0AFB6; --gold: #D9BC82;
+    --good: #84C894; --good-soft: #1F3324; --warn: #EBA27A; --warn-soft: #3A2419; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1C1410; --surface: #261B15; --ink: #F3E7DC; --muted: #BCA593; --line: #3D2C22;
+  --caramel: #E0A35E; --caramel-deep: #F0BD7E; --blush: #3E2628; --blush-ink: #F0AFB6; --gold: #D9BC82;
+  --good: #84C894; --good-soft: #1F3324; --warn: #EBA27A; --warn-soft: #3A2419; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 920px; margin: 0 auto; padding-inline: 20px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
+h2 { font-size: clamp(1.8rem, 4.5vw, 2.5rem); line-height: 1.1; }
+h3 { font-size: 1.3rem; line-height: 1.2; }
+p { margin: 0; max-width: 64ch; }
+.eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--caramel); }
+.lede { color: var(--muted); font-size: 1.05rem; }
+a { color: var(--caramel-deep); }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--caramel); outline-offset: 2px; }
+
+/* hero */
+.hero { background: linear-gradient(180deg, var(--blush), var(--bg)); padding-block: 56px 40px; }
+.hero .wrap { display: grid; gap: 18px; }
+.hero h1 { font-size: clamp(3rem, 11vw, 6.2rem); line-height: .95; }
+.hero .tag { font-family: var(--display); font-size: clamp(1.4rem, 4vw, 2rem); color: var(--caramel-deep); }
+.swatches { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.sw { display: grid; gap: 4px; font-size: .72rem; color: var(--muted); }
+.sw i { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--line); display: block; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .9rem; color: var(--muted); }
+.facts b { color: var(--ink); }
+
+/* section nav */
+nav.sec { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+nav.sec .wrap { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+nav.sec a { font-size: .84rem; font-weight: 600; color: var(--muted); text-decoration: none; padding: 12px 10px; white-space: nowrap; border-bottom: 2px solid transparent; }
+nav.sec a.on { color: var(--ink); border-bottom-color: var(--caramel); }
+
+section.block { padding-block: 56px; border-bottom: 1px solid var(--line); }
+section.block > .wrap { display: grid; gap: 22px; }
+.head { display: grid; gap: 8px; }
+
+.quote { font-family: var(--display); font-size: clamp(1.4rem, 3.6vw, 1.9rem); line-height: 1.25; border-left: 3px solid var(--gold); padding-left: 18px; max-width: 30ch; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 720px) { .grid3 { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.panel p { font-size: .95rem; }
+ul.clean { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: .95rem; }
+.note { font-size: .85rem; color: var(--muted); }
+.flag { background: var(--warn-soft); color: var(--ink); border-radius: 10px; padding: 12px 14px; font-size: .9rem; }
+.flag b { color: var(--warn); }
+
+/* product menu */
+.menu { display: grid; gap: 0; }
+.dish { display: grid; grid-template-columns: 52px 1fr auto; gap: 4px 16px; align-items: start; padding: 18px 0; border-bottom: 1px dashed var(--line); }
+.dish:last-child { border-bottom: 0; }
+.dot { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--line); }
+.dish h3 { font-size: 1.35rem; }
+.dish .when { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: right; white-space: nowrap; }
+.dish .when.hero-tag { color: var(--caramel); }
+.dish p { grid-column: 2 / -1; font-size: .95rem; color: var(--muted); }
+@media (max-width: 520px) { .dish { grid-template-columns: 40px 1fr; } .dot { width: 40px; height: 40px; } .dish .when { grid-column: 2; text-align: left; } }
+
+/* can drawing */
+.can-wrap { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 28px; align-items: center; }
+@media (max-width: 620px) { .can-wrap { grid-template-columns: 1fr; justify-items: start; } }
+.can { width: 170px; max-width: 100%; }
+.ritual { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--display); font-size: 1.25rem; }
+.ritual span.arrow { color: var(--gold); font-family: var(--body); }
+.msgs { display: flex; flex-wrap: wrap; gap: 8px; }
+.msgs span { font-family: var(--display); font-size: 1rem; padding: 8px 14px; border: 1px solid var(--gold); border-radius: 4px; background: var(--surface); }
+
+/* money */
+.calc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 20px; }
+@media (max-width: 760px) { .calc { grid-template-columns: 1fr; } }
+.costrow { display: grid; grid-template-columns: 1fr 92px; gap: 10px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+.costrow:last-child { border-bottom: 0; }
+.costrow small { display: block; color: var(--muted); font-size: .75rem; }
+.costrow small.est { color: var(--warn); font-weight: 600; }
+.money-in { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); padding-left: 8px; }
+.money-in span { color: var(--muted); font-size: .85rem; }
+.money-in input { width: 100%; border: 0; background: transparent; font: 600 .95rem var(--body); color: var(--ink); padding: 7px 6px; font-variant-numeric: tabular-nums; min-width: 0; }
+.total { display: flex; justify-content: space-between; align-items: baseline; padding-top: 10px; font-weight: 700; }
+.total b { font-family: var(--display); font-weight: 400; font-size: 1.8rem; color: var(--caramel-deep); font-variant-numeric: tabular-nums; }
+.toggle { display: flex; gap: 8px; align-items: center; font-size: .9rem; cursor: pointer; }
+.toggle input { accent-color: var(--caramel); width: 18px; height: 18px; }
+.price-box { display: grid; gap: 8px; }
+.price-box .big { display: flex; align-items: baseline; gap: 10px; }
+.price-box .big b { font-family: var(--display); font-weight: 400; font-size: 3rem; line-height: 1; font-variant-numeric: tabular-nums; }
+input[type="range"] { width: 100%; accent-color: var(--caramel); }
+.tbl-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; min-width: 460px; }
+th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.keep { font-weight: 700; }
+.chip { display: inline-block; font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+.chip.good { background: var(--good-soft); color: var(--good); }
+.chip.ok { background: var(--blush); color: var(--blush-ink); }
+.chip.bad { background: var(--warn-soft); color: var(--warn); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 620px) { .stats { grid-template-columns: 1fr; } }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 4px; }
+.stat b { font-family: var(--display); font-weight: 400; font-size: 1.9rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat span { font-size: .85rem; color: var(--muted); }
+.stat .money-in { max-width: 140px; }
+
+/* plan */
+.phases { display: grid; gap: 14px; }
+.phase { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: grid; gap: 10px; }
+.phase-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.phase-top .when { font-size: .8rem; font-weight: 700; color: var(--caramel); letter-spacing: .04em; }
+.bar { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--caramel); width: 0; transition: width .3s; }
+.task { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; cursor: pointer; padding: 3px 0; }
+.task input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--caramel); flex: none; }
+.task.done span { color: var(--muted); text-decoration: line-through; }
+.overall { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.overall .bar { flex: 1; min-width: 160px; height: 10px; border-radius: 5px; }
+
+.shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.shot { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; cursor: pointer; font-size: .9rem; }
+.shot input { accent-color: var(--caramel); width: 16px; height: 16px; margin-top: 3px; flex: none; }
+.shot.done { opacity: .6; }
+
+footer { padding-block: 40px 64px; color: var(--muted); font-size: .85rem; }
+footer .wrap { display: grid; gap: 6px; }
+.sync { font-size: .78rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .bar i { transition: none; } }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Amora · Business plan · South Africa</span>
+    <h1>AMORA</h1>
+    <p class="tag">Don't compare. Just glow.</p>
+    <p class="lede">A self-love beauty brand. Small beauty rituals that remind women to enjoy themselves, look after themselves, and stop measuring themselves against everyone else. Fun enough to post, beautiful enough to gift, affordable enough to actually buy, and personal enough to mean something.</p>
+    <div class="swatches" aria-label="Brand colours">
+      <div class="sw"><i style="background:#F2C9C6"></i>Soft pink</div>
+      <div class="sw"><i style="background:#F4E9D8"></i>Crème</div>
+      <div class="sw"><i style="background:#C27C35"></i>Caramel</div>
+      <div class="sw"><i style="background:#6B4126"></i>Warm brown</div>
+      <div class="sw"><i style="background:#C9A866"></i>Soft gold</div>
+    </div>
+    <div class="facts">
+      <span>First product <b>Crème Brûlée Body Polish</b></span>
+      <span>Size <b>250g</b></span>
+      <span>Suggested price <b id="heroPrice">R229</b></span>
+      <span>Main shop <b>Takealot</b></span>
+    </div>
+  </div>
+</header>
+
+<nav class="sec" aria-label="Sections">
+  <div class="wrap" id="secnav">
+    <a href="#brand">Brand</a>
+    <a href="#products">Products</a>
+    <a href="#packaging">Packaging</a>
+    <a href="#shop">Shopping list</a>
+    <a href="#money">Money</a>
+    <a href="#sell">Takealot</a>
+    <a href="#plan">Launch plan</a>
+    <a href="#content">Content</a>
+    <a href="#safe">Before you sell</a>
+  </div>
+</nav>
+
+<section class="block" id="brand">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">01 · The brand</span><h2>A body scrub brand with a message</h2></div>
+    <p class="quote">You don't need to become somebody else.</p>
+    <div class="grid3">
+      <div class="panel"><h3>The scrub</h3><p>Dessert-scented brown sugar body polish. Thick, glossy and made to be filmed.</p></div>
+      <div class="panel"><h3>The can</h3><p>A clear can instead of the usual jar, so it stands out next to every other scrub on Takealot.</p></div>
+      <div class="panel"><h3>The details</h3><p>Small hidden self-love reminders on the lid, seal and card. That's what people remember.</p></div>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <span class="eyebrow">Brand lines</span>
+        <ul class="clean">
+          <li>Don't compare. Just glow.</li>
+          <li>Made for the skin you're in.</li>
+          <li>Softer skin. Happier you.</li>
+          <li>A sweeter you.</li>
+          <li>Glow at your pace.</li>
+          <li>A little self-love goes a long way.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <span class="eyebrow">How it feels</span>
+        <p>Feminine and premium, but not overly girly or childish. Dessert and bakery imagery mixed with clean beauty packaging. The message is never shouted. The customer discovers it in the small details.</p>
+        <p class="note">Why it can work: dessert scents are what's selling in body scrubs right now, and on Takealot most scrubs look the same: a wide jar and a plain label. A clear can with a caramel texture inside looks different in a tiny search-result photo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="products">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">02 · The menu</span><h2>Scents like a dessert menu</h2>
+      <p class="lede">One hero product first. New scents arrive as short, limited drops: same can, same lid, new label artwork.</p></div>
+    <div class="menu">
+      <div class="dish"><i class="dot" style="background:linear-gradient(135deg,#E2A35C,#8E5520)"></i><h3>Crème Brûlée</h3><span class="when hero-tag">Hero · always</span><p>Brown sugar + vanilla + caramel. Thick, glossy, scoopable, like the caramelised top of a crème brûlée.</p></div>
+      <div class="dish"><i class="dot" style="background:linear-gradient(135deg,#F7B7BC,#D9646F)"></i><h3>Strawberry Sorbet</h3><span class="when">Summer drop · only 30</span><p>Pink polish, strawberry illustrations, numbered stickers: "Summer drop 12 / 30".</p></div>
+      <div class="dish"><i class="dot" style="background:linear-gradient(135deg,#C98B57,#6B4126)"></i><h3>Gingerbread Girl</h3><span class="when">December drop</span><p>Warm gingerbread, vanilla and spice.</p></div>
+      <div class="dish"><i class="dot" style="background:linear-gradient(135deg,#C2475E,#4A2420)"></i><h3>Love Bite</h3><span class="when">Valentine's drop</span><p>Raspberry, chocolate and vanilla direction.</p></div>
+      <div class="dish"><i class="dot" style="background:linear-gradient(135deg,#FFF4EA,#F2C9C6)"></i><h3>Vanilla Cloud</h3><span class="when">Later</span><p>Whipped vanilla.</p></div>
+    </div>
+    <div class="grid3">
+      <div class="panel"><span class="eyebrow">Gift set</span><h3>The Amora Mini Ritual</h3><p>Mini body polishes in a gift box + message card: "A little self-love goes a long way." Add an Amora perfume sample if you like. For Christmas, birthdays, bridesmaids and influencer PR. On Takealot, sets also save fees: one delivery fee for the whole box.</p></div>
+      <div class="panel"><span class="eyebrow">Later</span><h3>Whipped body polish</h3><p>Looks like mousse, foams on wet skin. Great on video, but a harder recipe. Only after Crème Brûlée is perfected.</p></div>
+      <div class="panel"><span class="eyebrow">Later</span><h3>Coconut Dream solid polish</h3><p>A solid bar in a push-up cardboard tube. Good for travel and a different format, not just another scent.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="packaging">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">03 · Packaging</span><h2>The clever part</h2>
+      <p class="lede">Not the short, wide jar every scrub uses. A clear, can-shaped container, so the caramel texture becomes the design.</p></div>
+    <div class="can-wrap">
+      <svg class="can" viewBox="0 0 170 230" role="img" aria-label="Sketch of the clear Amora can with a cream label and gold lid">
+        <rect x="25" y="8" width="120" height="22" rx="6" style="fill:var(--gold)"/>
+        <text x="85" y="23" text-anchor="middle" font-family="Gloock, serif" font-size="11" style="fill:var(--bg)">AMORA ♡</text>
+        <rect x="22" y="30" width="126" height="190" rx="10" style="fill:var(--line)" opacity=".5"/>
+        <rect x="28" y="70" width="114" height="146" rx="6" fill="#C27C35"/>
+        <rect x="28" y="70" width="114" height="10" fill="#9C5E24"/>
+        <rect x="40" y="96" width="90" height="96" rx="4" fill="#F4E9D8"/>
+        <text x="85" y="122" text-anchor="middle" font-family="Gloock, serif" font-size="14" fill="#3A2418">AMORA</text>
+        <text x="85" y="142" text-anchor="middle" font-family="Gloock, serif" font-size="10" fill="#8E5520">CRÈME BRÛLÉE</text>
+        <text x="85" y="156" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#7D6556">body polish</text>
+        <text x="85" y="180" text-anchor="middle" font-family="Manrope, sans-serif" font-size="7" fill="#7D6556">250g</text>
+      </svg>
+      <div style="display:grid;gap:12px;min-width:0">
+        <p><b>Container:</b> clear can shape, about 9.2cm tall with a 5.5cm opening. The label doesn't cover everything, so you see the polish.</p>
+        <p><b>Two lids:</b> a sealed, tamper-evident lid for hygiene and delivery, plus a separate reusable lid inside (champagne gold if affordable, cream if plastic is much cheaper). Branded on top so it still looks designed from above in a bathroom.</p>
+        <div class="ritual"><span>Open</span><span class="arrow">→</span><span>reveal</span><span class="arrow">→</span><span>replace lid</span><span class="arrow">→</span><span>keep using</span></div>
+        <p><b>Box:</b> a cream or blush window box for gifts and online orders, closed with a sticker seal.</p>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="panel"><span class="eyebrow">Small details to discover</span>
+        <ul class="clean">
+          <li>Seal sticker: "Don't compare. Just glow. ♡"</li>
+          <li>Card inside: "Post your scrub moment ♡ #AmoraGlow. Tag us for a chance to be featured."</li>
+          <li>A different tiny message per batch</li>
+          <li>Numbered stickers on limited drops</li>
+        </ul>
+      </div>
+      <div class="panel"><span class="eyebrow">Messages for batches</span>
+        <div class="msgs"><span>Softer skin. Happier you.</span><span>A sweeter you.</span><span>Glow at your pace.</span><span>Made for the skin you're in.</span></div>
+      </div>
+    </div>
+    <p class="note">Cost rule: same container, same lid, same label size. Only the artwork changes per scent. That's how it becomes collectible without costing more.</p>
+  </div>
+</section>
+
+<section class="block" id="shop">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">04 · Shopping list</span><h2>What to buy to make your first test batch</h2>
+      <p class="lede">Enough for about ten 100g test batches. All from Takealot, prices as of 2 October 2026. Tick items off as you buy them. Skip anything you already have at home.</p></div>
+    <div class="panel" style="border-color:var(--caramel)">
+      <span class="eyebrow">The basics: a body scrub is just this</span>
+      <div class="tbl-scroll"><table style="min-width:0">
+        <thead><tr><th>Ingredient</th><th>What it does</th><th class="num">Share</th></tr></thead>
+        <tbody>
+          <tr><td><b>1. Brown sugar</b></td><td>The scrub. Brown is softer on skin than white.</td><td class="num">about 2/3</td></tr>
+          <tr><td><b>2. Oil</b></td><td>Holds the sugar together and softens skin. Sweet almond + fractionated coconut.</td><td class="num">about 1/3</td></tr>
+          <tr><td><b>3. Fragrance</b></td><td>The Crème Brûlée smell. Must be skin-safe.</td><td class="num">a pinch</td></tr>
+          <tr><td><b>4. Vitamin E</b></td><td>Stops the oil going off.</td><td class="num">a few drops</td></tr>
+          <tr><td><b>5. Preservative</b></td><td>Stops mould when shower water gets in.</td><td class="num">a few drops</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">That's it. Mix the oil part, then stir in the sugar. Exact grams are in "Test batch 1" below.</p>
+    </div>
+    <div class="grid2">
+      <div class="panel"><span class="eyebrow">Ingredients</span><div id="buyIng"></div><div class="total"><span>Ingredients</span><b id="buyIngTotal">R0</b></div></div>
+      <div class="panel"><span class="eyebrow">Tools</span><div id="buyTools"></div><div class="total"><span>Tools</span><b id="buyToolsTotal">R0</b></div></div>
+    </div>
+    <div class="grid2">
+      <div class="panel"><span class="eyebrow">Test batch 1 · 100g</span>
+        <div class="tbl-scroll"><table style="min-width:0">
+          <tbody>
+            <tr><td>Fine brown sugar</td><td class="num">64g</td></tr>
+            <tr><td>Sweet almond oil</td><td class="num">18g</td></tr>
+            <tr><td>Fractionated coconut oil</td><td class="num">15.5g</td></tr>
+            <tr><td>Vitamin E</td><td class="num">0.5g</td></tr>
+            <tr><td>Fragrance (check the supplier's skin limit first)</td><td class="num">up to 1g</td></tr>
+            <tr><td>Preservative (phenoxyethanol, max 1%)</td><td class="num">1g</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">Mix the oils, vitamin E, fragrance and preservative first, then stir in the sugar. Too runny: add sugar. Too dry: add a little oil. Write down every gram you change.</p>
+      </div>
+      <div class="panel"><span class="eyebrow">Good to know</span>
+        <ul class="clean">
+          <li>The fragrance must say <b>cosmetic-grade or skin-safe</b>, not only "for candles". Ask the seller for the safety sheet.</li>
+          <li>Weigh everything in grams on the scale. Cups and spoons aren't exact enough to repeat a recipe.</li>
+          <li>Wipe bowls, spatula and jars with 70% alcohol and let them dry before you start.</li>
+          <li>The jars are only for testing. The real clear cans come later.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="money">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">05 · Money</span><h2>What one can costs, and what you keep</h2>
+      <p class="lede">Every number is editable. Prices come from Takealot on 2 October 2026. Items marked in orange are guesses: replace them with real quotes.</p></div>
+    <div class="calc">
+      <div class="panel">
+        <span class="eyebrow">Cost of one 250g can</span>
+        <div id="costRows"></div>
+        <label class="toggle" for="boxOn"><input type="checkbox" id="boxOn"> Include window box (gifts and online orders)</label>
+        <div class="total"><span>Cost per can</span><b id="unitCost">R0</b></div>
+      </div>
+      <div style="display:grid;gap:16px;align-content:start;min-width:0">
+        <div class="panel price-box">
+          <span class="eyebrow">Your selling price</span>
+          <div class="big"><b id="priceOut">R229</b><span class="note">for 250g on Takealot</span></div>
+          <input type="range" id="price" min="129" max="349" step="10" value="229" aria-label="Selling price">
+          <p class="note">Scrubs on Takealot today: unbranded R79 to R89, local brands R125 to R185, premium R250 to R450 (Lily's 200ml is R259). R229 sits just under premium. Takealot's fixed fees make anything under about R179 hard to profit from with this recipe.</p>
+          <p id="tkVerdict" class="note"></p>
+        </div>
+        <div class="panel price-box">
+          <span class="eyebrow">Takealot 2-pack price</span>
+          <div class="money-in" style="max-width:160px"><span>R</span><input type="number" id="bundle" value="429" min="0" step="10" inputmode="numeric" aria-label="2-pack price"></div>
+          <p class="note">Two cans in one listing (for example Crème Brûlée + a drop scent). Takealot charges its delivery fee once per listing, so a set can earn more per order.</p>
+        </div>
+        <div class="flag" id="oilFlag"><b>Your two oils are over half the cost.</b> Takealot sizes are small and expensive. Ask bulk cosmetic suppliers for prices on 5L, or try swapping fractionated coconut oil for a cheaper oil in a test batch.</div>
+      </div>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">What you keep per order: Takealot first, other options below</span>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>Where</th><th>What they take</th><th class="num">They take</th><th class="num">You keep</th></tr></thead>
+        <tbody id="channels"></tbody>
+      </table></div>
+      <p class="note">Takealot: 15% success fee + about R32 delivery fee, both plus VAT, plus R460 a month for the account. Amazon.co.za: 5% until 31 March 2027. Bob Shop: up to 5%. Fees come from 2026 seller guides, so check them in each seller portal.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><span>Monthly profit goal</span><div class="money-in"><span>R</span><input type="number" id="goal" value="5000" min="0" step="500" inputmode="numeric" aria-label="Monthly profit goal"></div><b id="goalJars">0 cans</b><span>a month on Takealot, after the R460 monthly fee</span></div>
+      <div class="stat"><span>Takealot's R460 monthly fee</span><b id="tkBreak">0 cans</b><span>sold each month just to cover it</span></div>
+      <div class="stat"><span>First test kit (Takealot)</span><b id="testKit">R0</b><span>ingredients for about ten 100g test batches + 6 sample jars</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="sell">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">06 · Takealot</span><h2>Takealot is the main shop</h2>
+      <p class="lede">South Africa's biggest online store. Takealot stores, packs and delivers for you, so you only make and send stock. The work is winning the search result and getting the first reviews.</p></div>
+    <div class="grid2">
+      <div class="panel"><span class="eyebrow">What you need to sign up</span>
+        <ul class="clean">
+          <li>Your ID and a bank account. You don't need a registered company.</li>
+          <li>A barcode (EAN) for every product. Each scent and each set needs its own. You buy these from a barcode supplier.</li>
+          <li>Product details: name, size, ingredients, a short description.</li>
+          <li>Apply on the Takealot Seller Portal and wait for approval.</li>
+        </ul>
+      </div>
+      <div class="panel"><span class="eyebrow">Photos that win the click</span>
+        <ul class="clean">
+          <li>Main photo: the can on a white background, filling most of the frame, at least 1000 × 1000 pixels.</li>
+          <li>5 to 7 photos in total. Add the texture close-up, the polish on skin, the lid, the size in a hand, and the box.</li>
+          <li>Your can is the advantage here: in a grid of wide jars, a clear caramel can stands out.</li>
+        </ul>
+      </div>
+      <div class="panel"><span class="eyebrow">How stock works</span>
+        <p><b>Stock at Takealot (recommended):</b> you send cans to their warehouse and they deliver fast. Fast delivery also helps you show up first.</p>
+        <p><b>Leadtime:</b> you keep stock at home and send each order to Takealot within about 4 to 5 working days. Less risk, slower delivery.</p>
+        <p class="note">Start with Leadtime while you test, then move to stock at Takealot once it sells.</p>
+      </div>
+      <div class="panel"><span class="eyebrow">Getting the first sales</span>
+        <ul class="clean">
+          <li>Start a little lower while you have no reviews, then raise the price.</li>
+          <li>Ask friends and family to buy through Takealot and leave honest reviews.</li>
+          <li>Put a card in the box: "Loved it? Tell others in a Takealot review ♡". Never offer anything in return for a review.</li>
+          <li>Send every Instagram post and Reel to your Takealot link.</li>
+          <li>Try a small Sponsored Ads budget once you have a few reviews.</li>
+          <li>Watch the Promotions Calendar for Daily Deals and the Blue Dot Sale (Black Friday is 27 November 2026).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="head" style="margin-top:12px"><span class="eyebrow">Other options, welcome alongside Takealot</span></div>
+    <div class="grid3">
+      <div class="panel"><h3>Instagram + WhatsApp</h3><p>Keeps the most per can and builds Amora. Good for drops and gift sets.</p></div>
+      <div class="panel"><h3>Amazon.co.za</h3><p>Only 5% until 31 March 2027 and R1 a month. A cheap second online shop.</p></div>
+      <div class="panel"><h3>Markets, spas, Faithful to Nature</h3><p>Markets for real reactions and filming. Shops and Faithful to Nature buy at about half price, but in bulk.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="plan">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">07 · Launch plan</span><h2>From kitchen test to first sale</h2>
+      <p class="lede">Tick things off as you go. Dates are a suggestion: move them if you need to. The rule from your concept stays: don't add anything else until the first real prototype exists.</p></div>
+    <div class="overall"><b id="overallPct">0%</b><div class="bar"><i id="overallBar"></i></div><span class="note" id="overallCount"></span></div>
+    <div class="phases" id="phases"></div>
+  </div>
+</section>
+
+<section class="block" id="content">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">08 · Content</span><h2>Make them think "I need to film this"</h2>
+      <p class="lede">Build content around how it looks, sounds and feels, not "product on white, buy now." Tick shots as you film them.</p></div>
+    <div class="shots" id="shots"></div>
+    <div class="grid2">
+      <div class="panel"><span class="eyebrow">The Frank Body lesson</span><p>Frank Body grew from customers' photos of its scrub. Amora's version is the texture: scoop it, stretch it, show the crystals, show it under water, show the glow after. Every order asks people to post with #AmoraGlow.</p></div>
+      <div class="panel"><span class="eyebrow">Fits your current plan</span><p>Keep your Reel rotation (lesson, interview, trend). The polish gives each one material: what you learned in test batch 3, a market customer smelling it, the dessert-to-product transformation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="safe">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">09 · Before you sell</span><h2>Safe and legal first</h2>
+      <p class="lede">The kitchen version is product development, not the final recipe. These need to be done before a customer gets a can.</p></div>
+    <div class="phases" id="safeList"></div>
+    <p class="note">This is a starting checklist, not legal advice. South Africa's CTFA (Cosmetic, Toiletry &amp; Fragrance Association) has guidance on cosmetic labels and safety.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Amora · by Dani · plan started 2 October 2026</span>
+    <span class="sync" id="sync">Progress saved on this device</span>
+  </div>
+</footer>
+
+<script>
+const COSTS = [
+  { id: "sugar", name: "Fine brown sugar, ~160g", src: "Selati light brown 2kg, R94", v: 7.5 },
+  { id: "almond", name: "Sweet almond oil, ~45g", src: "Amazonia 1L, R415", v: 20 },
+  { id: "coconut", name: "Fractionated coconut oil, ~37g", src: "New Health 500ml, R278", v: 22 },
+  { id: "vite", name: "Vitamin E, ~1g", src: "30ml, R99", v: 3.5 },
+  { id: "frag", name: "Cosmetic-grade vanilla / caramel fragrance", src: "Vanilla fragrance oil 500ml, R380. Check it's skin-safe", v: 3 },
+  { id: "pres", name: "Preservative, ~2.5g", src: "Phenoxyethanol 500g, R279", v: 1.5 },
+  { id: "can", name: "Clear can container + sealed lid", src: "Guess. Get a quote from your supplier", v: 15, est: true },
+  { id: "lid", name: "Reusable branded lid", src: "Guess. Gold costs more than cream", v: 5, est: true },
+  { id: "label", name: "Front label", src: "Printed yourself on sticker paper", v: 3, est: true },
+  { id: "extras", name: "Seal sticker + message card", src: "Printed yourself", v: 2.5, est: true }
+];
+const BOX = { id: "box", name: "Window box", src: "Kraft window boxes, 50 for R309", v: 6.2 };
+const TEST_KIT = [
+  ["Fine brown sugar", "Selati light brown sugar 2kg", 94],
+  ["Sweet almond oil", "PURE sweet almond oil 500ml", 249],
+  ["Fractionated coconut oil", "New Health PURE fractionated coconut oil 500ml", 278],
+  ["Vitamin E", "Green Valley vitamin E oil 30ml", 99],
+  ["Vanilla fragrance oil (skin-safe)", "Vanilla fragrance oil 50ml. Check it's cosmetic-grade", 149],
+  ["Preservative", "NBT Naturals phenoxyethanol 100g", 119],
+  ["Test jars", "NBT Naturals 250g clear PET jars, 6 pack", 136]
+];
+const TOOLS = [
+  ["Digital scale, 0.1g accurate", "Portable kitchen scale up to 2kg, 0.1g", 139],
+  ["Silicone spatula", "Creative Cooking mini silicone spatula", 59],
+  ["Mixing bowl", "Stainless steel mixing bowl set (or use one from home)", 184],
+  ["Gloves", "Nitrile gloves, 100 pack", 135],
+  ["70% alcohol for cleaning", "Alcohol swabs, 200 pack", 50]
+];
+
+const PHASES = [
+  { id: "p1", name: "Prototype", when: "October 2026", tasks: [
+    "Buy the test kit (sugar, two oils, vitamin E, fragrance, preservative, jars)",
+    "Get the fragrance supplier's safety sheet and the max % allowed on skin",
+    "Make 100g test batch 1 and write down exact grams",
+    "Adjust until it's thick, glossy, scoopable wet sand, with no oil floating on top",
+    "Give 5 friends a sample and ask what they'd pay",
+    "Film the testing for content" ] },
+  { id: "p2", name: "Packaging", when: "October to early November", tasks: [
+    "Order 2 or 3 sample clear cans and check the polish looks good inside",
+    "Get price quotes for 50 and 100 cans + both lids",
+    "Design the Crème Brûlée label, seal sticker and #AmoraGlow card",
+    "Print a test label and check it on the real can",
+    "Decide: gold or cream reusable lid" ] },
+  { id: "tk", name: "Set up Takealot", when: "October 2026, start now (approval takes time)", tasks: [
+    "Apply on the Takealot Seller Portal with your ID and bank details",
+    "Buy barcodes: one for Crème Brûlée, plus extras for future scents and sets",
+    "Take the white-background main photo of the real can",
+    "Shoot 4 to 6 more photos: texture, on skin, lid, in a hand, box",
+    "Write the listing: name, 250g, ingredients, what makes it different",
+    "Choose Leadtime to start, or send stock to the Takealot warehouse" ] },
+  { id: "p3", name: "Launch Crème Brûlée on Takealot", when: "November to early December", tasks: [
+    "Finish the 'Before you sell' checklist below",
+    "Make the first batch of 30 cans with batch numbers",
+    "Put the listing live on Takealot",
+    "Ask friends and family to buy on Takealot and leave honest reviews",
+    "Post a Reel that links to the Takealot listing",
+    "Check the Promotions Calendar for Blue Dot Sale and Christmas deals",
+    "Film order 1 being packed" ] },
+  { id: "p4", name: "Gift season", when: "December 2026", tasks: [
+    "List the Amora Mini Ritual gift set on Takealot (needs its own barcode)",
+    "Send 3 to 5 gift sets to influencers from your collab list, with the Takealot link",
+    "Optional: one Christmas market for reactions and filming" ] },
+  { id: "p5", name: "Grow", when: "January to February 2027", tasks: [
+    "Once you have 5+ good reviews, try a small Sponsored Ads budget",
+    "Move to stock at the Takealot warehouse if Leadtime orders are steady",
+    "Strawberry Sorbet summer drop: only 30, numbered, on Takealot and Instagram",
+    "List a 2-pack (Crème Brûlée + drop scent) to save delivery fees",
+    "Love Bite drop for Valentine's",
+    "Optional: list on Amazon.co.za before the 5% fee ends (31 March 2027)" ] }
+];
+const SAFE = [
+  { id: "s1", name: "Product safety", when: "", tasks: [
+    "Fragrance used within the supplier's dermal (skin) limit, with their safety paperwork kept on file",
+    "Preservative included, because wet hands get water into the can",
+    "Stability test: keep sample cans 4 weeks somewhere warm and somewhere cool, check smell, colour and texture",
+    "Test that the polish doesn't react with or leak from the can",
+    "Clean tools and workspace, with gloves and hair tied back when making batches" ] },
+  { id: "s2", name: "Labels and records", when: "", tasks: [
+    "Full ingredient list on the label, using the official (INCI) names",
+    "Weight (250g), your business name and a way to contact you",
+    "Batch number and date made on every can, with a record of each batch",
+    "Check current SA cosmetic label rules (CTFA guidance)" ] },
+  { id: "s3", name: "Business basics", when: "", tasks: [
+    "Separate bank account for Amora money",
+    "Simple sheet tracking costs, sales and stock",
+    "Know when you'd need to register for tax with SARS" ] }
+];
+const SHOTS = ["Sugar falling into a bowl", "Caramel swirling", "Vanilla pods close up", "Spoon scooping the polish", "Close-up of the sugar crystals", "The sound of opening the can", "Lid popping off", "The first scoop", "Polish melting on wet skin", "Putting the reusable lid on", "A row of numbered drop cans", "Packing order 17 / 30", "Customer's bathroom shelf", "Real crème brûlée turning into the product"];
+
+let state = { costs: {}, box: false, price: 229, bundle: 429, goal: 5000, done: {} };
+let store = null;
+
+const R = n => "R" + (Math.round(n * 100) / 100).toLocaleString("en-ZA", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+const R0 = n => "R" + Math.round(n).toLocaleString("en-ZA");
+function el(tag, attrs = {}, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else if (v !== false && v != null) n.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of kids.flat()) if (c != null) n.append(c.nodeType ? c : document.createTextNode(c));
+  return n;
+}
+function loadLocal() { try { const s = JSON.parse(localStorage.getItem("amora-plan") || "null"); if (s) state = { ...state, ...s }; } catch (e) {} }
+let t;
+function save() {
+  try { localStorage.setItem("amora-plan", JSON.stringify(state)); } catch (e) {}
+  clearTimeout(t);
+  t = setTimeout(async () => {
+    if (!store) return;
+    try { await store.set({ ...state, updated: Date.now() }); setSync("Progress saved to your account"); } catch (e) { setSync("Progress saved on this device only"); }
+  }, 600);
+}
+function setSync(s) { document.getElementById("sync").textContent = s; }
+
+const val = c => state.costs[c.id] ?? c.v;
+function unitCost() { return COSTS.reduce((a, c) => a + Number(val(c) || 0), 0) + (state.box ? Number(val(BOX) || 0) : 0); }
+
+function renderCosts() {
+  const box = document.getElementById("costRows");
+  box.replaceChildren();
+  [...COSTS, BOX].forEach(c => {
+    if (c === BOX && !state.box) return;
+    const inp = el("input", { type: "number", id: "c_" + c.id, min: "0", step: "0.5", inputmode: "decimal", "aria-label": c.name });
+    inp.value = val(c);
+    inp.addEventListener("input", () => { state.costs[c.id] = inp.value === "" ? 0 : Number(inp.value); save(); renderMoney(); });
+    box.append(el("div", { class: "costrow" },
+      el("div", {}, c.name, el("small", { class: c.est ? "est" : "" }, c.src)),
+      el("div", { class: "money-in" }, el("span", {}, "R"), inp)));
+  });
+}
+
+function renderMoney() {
+  const cost = unitCost(), p = state.price;
+  document.getElementById("unitCost").textContent = R(cost);
+  document.getElementById("priceOut").textContent = R0(p);
+  document.getElementById("heroPrice").textContent = R0(p);
+  const oils = Number(val(COSTS[1])) + Number(val(COSTS[2]));
+  document.getElementById("oilFlag").hidden = oils < cost * 0.4;
+
+  const tkFeeFor = price => (price * 0.15 + 32) * 1.15;
+  const tkFee = tkFeeFor(p);
+  const bp = state.bundle;
+  const rows = [
+    { w: "Takealot · 1 can", how: "15% + ~R32 delivery, plus VAT (and R460 a month)", fee: tkFee, main: true },
+    { w: "Takealot · 2-pack", how: `2 cans for ${R0(bp)}, delivery fee charged once`, fee: tkFeeFor(bp), price: bp, units: 2, main: true },
+    { w: "Instagram / WhatsApp", how: "Nothing. Customer pays delivery", fee: 0 },
+    { w: "Amazon.co.za", how: "5% until 31 March 2027", fee: p * 0.05 },
+    { w: "Markets", how: "Stall fee only, paid per day", fee: 0 },
+    { w: "Shops and spas", how: "They buy at about half price", fee: p / 2 }
+  ];
+  const tb = document.getElementById("channels");
+  tb.replaceChildren();
+  rows.forEach(r => {
+    const price = r.price ?? p, units = r.units ?? 1;
+    const keep = price - r.fee - cost * units;
+    const pct = keep / price;
+    const cls = keep <= 0 ? "bad" : pct >= 0.4 ? "good" : pct >= 0.2 ? "ok" : "bad";
+    tb.append(el("tr", {}, el("td", {}, r.main ? el("b", {}, r.w) : r.w), el("td", {}, r.how), el("td", { class: "num" }, R0(r.fee)),
+      el("td", { class: "num keep" }, el("span", { class: "chip " + cls }, R0(keep)), units > 1 ? el("small", { class: "note", style: "display:block" }, R0(keep / units) + " per can") : null)));
+  });
+  const tkKeep = p - tkFee - cost;
+  document.getElementById("goalJars").textContent = tkKeep > 0 ? Math.ceil((state.goal + 460) / tkKeep) + " cans" : "Raise the price";
+  document.getElementById("tkVerdict").textContent = tkKeep <= 0
+    ? `At ${R0(p)} you lose money on Takealot. Raise the price or lower your costs.`
+    : `At ${R0(p)} you keep ${R0(tkKeep)} per can on Takealot (${Math.round(tkKeep / p * 100)}% of the price).`;
+  document.getElementById("tkBreak").textContent = tkKeep > 0 ? Math.ceil(460 / tkKeep) + " cans" : "You'd lose money";
+  document.getElementById("testKit").textContent = R0(TEST_KIT.reduce((a, x) => a + x[2], 0));
+}
+
+function renderShop() {
+  [["buyIng", TEST_KIT, "ing"], ["buyTools", TOOLS, "tool"]].forEach(([boxId, list, key]) => {
+    const box = document.getElementById(boxId);
+    box.replaceChildren();
+    list.forEach(([name, what, price], i) => {
+      const id = "buy_" + key + i;
+      const cb = el("input", { type: "checkbox", id: "t_" + id });
+      cb.checked = !!state.done[id];
+      cb.addEventListener("change", () => { state.done[id] = cb.checked; if (!cb.checked) delete state.done[id]; save(); renderShop(); });
+      box.append(el("label", { class: "task costrow" + (cb.checked ? " done" : ""), for: "t_" + id, style: "grid-template-columns:auto 1fr auto" },
+        cb, el("span", {}, name, el("small", {}, what)), el("b", { style: "font-variant-numeric:tabular-nums" }, R0(price))));
+    });
+    document.getElementById(boxId + (key === "ing" ? "" : "") + "Total").textContent = R0(list.reduce((a, x) => a + x[2], 0));
+  });
+}
+
+function checklist(container, groups) {
+  const box = document.getElementById(container);
+  box.replaceChildren();
+  groups.forEach(g => {
+    const doneN = g.tasks.filter((_, i) => state.done[g.id + i]).length;
+    const bar = el("div", { class: "bar" }, el("i", { style: `width:${doneN / g.tasks.length * 100}%` }));
+    box.append(el("div", { class: "phase" },
+      el("div", { class: "phase-top" }, el("h3", {}, g.name), el("span", { class: "when" }, (g.when ? g.when + " · " : "") + `${doneN}/${g.tasks.length}`)),
+      bar,
+      el("div", {}, g.tasks.map((tsk, i) => {
+        const id = g.id + i;
+        const cb = el("input", { type: "checkbox", id: "t_" + id });
+        cb.checked = !!state.done[id];
+        cb.addEventListener("change", () => { state.done[id] = cb.checked; if (!cb.checked) delete state.done[id]; save(); renderPlans(); });
+        return el("label", { class: "task" + (cb.checked ? " done" : ""), for: "t_" + id }, cb, el("span", {}, tsk));
+      }))));
+  });
+}
+function renderShots() {
+  const box = document.getElementById("shots");
+  box.replaceChildren();
+  SHOTS.forEach((s, i) => {
+    const id = "shot" + i;
+    const cb = el("input", { type: "checkbox", id: "t_" + id });
+    cb.checked = !!state.done[id];
+    cb.addEventListener("change", () => { state.done[id] = cb.checked; if (!cb.checked) delete state.done[id]; save(); renderShots(); });
+    box.append(el("label", { class: "shot" + (cb.checked ? " done" : ""), for: "t_" + id }, cb, el("span", {}, s)));
+  });
+}
+function renderPlans() {
+  checklist("phases", PHASES);
+  checklist("safeList", SAFE);
+  const all = [...PHASES, ...SAFE].flatMap(g => g.tasks.map((_, i) => g.id + i));
+  const d = all.filter(id => state.done[id]).length;
+  const pct = Math.round(d / all.length * 100);
+  document.getElementById("overallPct").textContent = pct + "%";
+  document.getElementById("overallBar").style.width = pct + "%";
+  document.getElementById("overallCount").textContent = `${d} of ${all.length} steps done, including "Before you sell"`;
+}
+function renderAll() {
+  document.getElementById("boxOn").checked = state.box;
+  document.getElementById("price").value = state.price;
+  document.getElementById("goal").value = state.goal;
+  document.getElementById("bundle").value = state.bundle;
+  renderCosts(); renderMoney(); renderShop(); renderPlans(); renderShots();
+}
+
+document.getElementById("boxOn").addEventListener("change", e => { state.box = e.target.checked; save(); renderCosts(); renderMoney(); });
+document.getElementById("price").addEventListener("input", e => { state.price = Number(e.target.value); save(); renderMoney(); });
+document.getElementById("goal").addEventListener("input", e => { state.goal = Number(e.target.value) || 0; save(); renderMoney(); });
+document.getElementById("bundle").addEventListener("input", e => { state.bundle = Number(e.target.value) || 0; save(); renderMoney(); });
+
+// highlight current section in the bar
+const links = [...document.querySelectorAll("#secnav a")];
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
+}), { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("section.block").forEach(s => io.observe(s));
+
+loadLocal();
+renderAll();
+
+(async () => {
+  if (!window.claude?.use) return;
+  try {
+    const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+    if (!db || !user) return;
+    const id = await user.id();
+    if (!id) return;
+    store = db.collection("data/users/" + id).doc("amora-plan");
+    const snap = await store.get();
+    if (snap.exists) {
+      const r = snap.data();
+      state = { costs: r.costs || {}, box: !!r.box, price: r.price || 229, bundle: r.bundle || 429, goal: r.goal ?? 5000, done: r.done || {} };
+      try { localStorage.setItem("amora-plan", JSON.stringify(state)); } catch (e) {}
+      renderAll();
+    } else if (Object.keys(state.done).length || Object.keys(state.costs).length) {
+      await store.set({ ...state, updated: Date.now() });
+    }
+    setSync("Progress saved to your account");
+  } catch (e) { store = null; }
+})();
+</script>
+
+</body></html>
